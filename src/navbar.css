@@ -1,0 +1,60 @@
+#nav-bar {
+    z-index: 10;
+    height: 66px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+}
+.scrolled {
+    background-color: 'black';
+}
+#inner-bar-1 {
+    position: relative;
+    left: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 600px;
+}
+#inner-bar-2 {
+    position: relative;
+    right: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 300px;
+}
+.nav-item {
+    font-size: 15px;
+    color: white;
+}
+#logo {
+    font-size: 25px;
+    color: red;
+}
+#profile-box {
+    background-color: white;
+    width: 25px;
+    height: 25px;
+
+    /* rounding corners */
+    border-radius: 5px;
+}
+#ib2-inner {
+    display: flex;
+    width: 50px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+#sortUp {
+    transform: rotate(180deg);    
+    color: white;
+    position: relative;
+    bottom: 3px;
+}
+.removeDec {
+    text-decoration: none;
+}
