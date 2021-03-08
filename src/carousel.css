@@ -19,12 +19,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: 5px;
 }
-.movie {
+.movie {    
     width: 15vw;
-    height: 15vh;   
-    border-radius: 5px;
+    min-width: 15vw;
+    height: 15vh;
+    min-height: 15vh;  
+    border-radius: 10px;
     background-size: 15vw 15vh;
     background-repeat: no-repeat;
 }
@@ -39,23 +41,31 @@
     color: white;
 }
 #forward-button {
+    position: relative;
+    left: 13px;
     height: 15vh;
-    width: 70px;
+    width: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-#forward-button:hover {
-    background-color: greenyellow;
+    background-color: black;
+    opacity: 0.6;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 #back-button {
+    position: relative;
+    right: 14px;
     height: 15vh;
-    width: 75px;
+    width: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 5px;
     transform: rotate(180deg);
+    background-color: black;
+    border: 1px solid black;
 }
-#back-button:hover {
-    background-color: greenyellow;
+.round {
+    border-radius: 5px;
 }

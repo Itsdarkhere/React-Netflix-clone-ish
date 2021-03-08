@@ -7,9 +7,13 @@ import './gategories.css'
 export default class Gategories extends React.Component {
     
 
-    movies = [['ss-movie.jpg', 'tron-movie.jpg', 'ww-movie.jpg', 'wolwerine.movie.jpg', 'Jr-movie.jpg', 'gg-movie.jpg'], 
-    ['dracula.movie.jpg', 'capMarvel-movie.jpg', 'inception-movie.jpg', 'brave-movie.jpg', 'shining-movie.jpg', 'CA-movie.jpg'],
-    ['aquaman-movie.jpg', 'fury.movie.jpg', 'ss-movie.jpg', 'jr-movie.jpg', 'gg-movie.jpg', 'inception-movie.jpg']];
+    movies = [['ss-movie.jpg', 'tron-movie.jpg', 'ww-movie.jpg', 'wolwerine.movie.jpg',
+     'Jr-movie.jpg', 'gg-movie.jpg', 'CA-movie.jpg', 'ww-movie.jpg'], 
+    ['dracula.movie.jpg', 'capMarvel-movie.jpg', 'inception-movie.jpg', 'brave-movie.jpg',
+     'shining-movie.jpg', 'CA-movie.jpg', 'xmen-movie.jpg', 'sherlock-movie.jpg'],
+    ['aquaman-movie.jpg', 'fury.movie.jpg', 'ss-movie.jpg', 'jr-movie.jpg', 'gg-movie.jpg',
+     'inception-movie.jpg', 'saw-movie.jpg', 'gg-movie.jpg']];
+    //Could definately include gategory into movies later
     gategory = ['Nousussa nyt', 'Jatka katselua', 'Toiminta ja seikkailu']
 
     render() {

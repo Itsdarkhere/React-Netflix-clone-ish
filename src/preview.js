@@ -14,8 +14,9 @@ export default class preview extends React.Component {
 
     
     //this needs to be passed to carousel so that it has movies to display
-    movies = ['oblivion.movies.jpg', 'maleficent-movie.jpg', 'need-movies.jpg', 'saw-movie.jpg', 'sherlock-movie.jpg', 'shining-movie.jpg'];
-
+    movies = ['oblivion.movies.jpg', 'maleficent-movie.jpg', 'need-movies.jpg',
+     'saw-movie.jpg', 'sherlock-movie.jpg', 'shining-movie.jpg', 'tron-movie.jpg', 'ss-movie.jpg'];
+        
     render() {
         return (
             <div id="video-preview" style={{backgroundImage: 'url("/pics/'+ this.props.info[0] + '-movie.jpg")'}}>
@@ -34,7 +35,7 @@ export default class preview extends React.Component {
                         </a>
                     </div>
                 </div>
-                <Carousel gategory="Suosittuja netflixissä" movies={this.movies} />
+                <Carousel gategory="Suosittuja netflixissä" movies={this.movies} clicked={false}/>
             </div>
         )
     }
