@@ -34,7 +34,7 @@ export default class Nav extends React.Component {
         if (window.scrollY < 100) {
             this.setState({navColor: ''})
         } else if (window.scrollY >= 100) {
-            this.setState({navColor: 'rgb(20, 20, 20)'})
+            this.setState({navColor: '#141414'})
         }   
     }
 

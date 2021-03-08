@@ -1,22 +1,22 @@
 #video-preview {
     position: relative;
     bottom: 85px;
-    background-image: url('brave-movie.jpg');
-    background-color: black;
+    background-color: #141414;
     background-size: 100% 90vh;
     background-repeat: no-repeat;
-    width: 100%;
-    height: 105vh;
+    width: 100%;    
+    height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
 }
 #preview-info {
     position: relative;
-    left: 60px;
-    bottom: 50px;
+    right: 350px;
+    bottom: 20px;
     width: 40vw;
     height: 50vh;
-    border: 5px solid black;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -26,12 +26,17 @@
 }
 #description {
     font-size: 20px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+#description-container {
+    max-width: 500px;
 }
 #rank {
     font-size: 25px;
 }
 #title {
     font-size: 60px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 #play-button {
     width: 130px;
@@ -39,6 +44,14 @@
     outline: none;
     border: 0;
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 17px;
+
+}
+#play-button:hover {
+    opacity: 0.8;
 }
 #info-button {
     width: 180px;
@@ -47,9 +60,24 @@
     border: 0;
     background-color: #6D6D6EB3;
     border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 20px;
+    color: white;
+}
+#info-button:hover {
+    opacity: 0.8;
 }
 #button-holder {
     width: 320px;
     display: flex;
     justify-content: space-between;
+}
+#info-circle {      
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 3px solid white;
+    font-size: 15px;
 }

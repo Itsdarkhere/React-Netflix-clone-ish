@@ -7,9 +7,6 @@
     display: flex;
     justify-content: space-between;
 }
-.scrolled {
-    background-color: 'black';
-}
 #inner-bar-1 {
     position: relative;
     left: 40px;
@@ -57,4 +54,7 @@
 }
 .removeDec {
     text-decoration: none;
+}
+.removeDec:hover {
+    opacity: 0.8;
 }
