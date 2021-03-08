@@ -16,12 +16,14 @@ export default class Carousel extends React.Component {
             gategory: this.props.gategory,
             movies: this.props.movies
         }
+        this.newRow = this.newRow.bind(this);
     }
 
     newRow() {
-        let element1 = document.getElementById('back-button');
-        let element2 = document.getElementById('movie-div-0');
-        if (getComputedStyle(element1).opacity !== 0) {
+        //since I have multiple of these components, the index is needed to separate 
+        let element1 = document.getElementById('back-button' + this.props.index);
+        let element2 = document.getElementById('movie-div-0'+ this.props.index);
+        if (getComputedStyle(element2).opacity !== 0) {
             element1.style.opacity = 0.6;
             element2.style.opacity = 1;
         }
@@ -33,14 +35,14 @@ export default class Carousel extends React.Component {
             <div id="list-container">
                 <h2 id="gategory">{this.state.gategory}</h2>
                 <div id="smaller-list-container">
-                    <div id="back-button" style={{opacity: 0}}>
+                    <div id={'back-button' + this.props.index} className="btn-back" style={{opacity: 0}}>
                         <FontAwesomeIcon icon={faChevronRight} style={{color: 'white'}} className="fa-2x" id="back-icon"/>
                     </div>
                     <div id="movie-list"> 
                         {this.state.movies.map((movie, index) => {
                             if (index === 0) {
                                 return (
-                                    <div id={"movie-div-"+ index} className="movie" style={{opacity: 0}} key={'movie-div'+ index}>
+                                    <div id={"movie-div-"+ index + this.props.index} className="movie" style={{opacity: 0}} key={'movie-div'+ index}>
                                         <img className="round" id={'img-'+index} alt="movie" src={process.env.PUBLIC_URL + "/pics/" + movie} 
                                         height="100%" width="100%"></img>
                                     </div>

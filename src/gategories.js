@@ -22,7 +22,7 @@ export default class Gategories extends React.Component {
                 {this.movies.map((list, index) => {
                     return (<Carousel 
                         gategory={this.gategory[index]}
-                        movies={list} key={'carousel' + index}/>)
+                        movies={list} key={'carousel' + index} index={index + 1}/>)
                 })}
             </div>
         )

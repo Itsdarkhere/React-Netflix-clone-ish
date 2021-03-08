@@ -31,15 +31,6 @@
     background-size: 15vw 15vh;
     background-repeat: no-repeat;
 }
-.short-movie {
-    width: 60px;
-    height: 15vh;
-    min-height: 15vh;  
-    border-radius: 10px;
-    background-color: red;
-    background-size: 15vw 15vh;
-    background-repeat: no-repeat;
-}
 #gategory {
     position: relative;
     align-self: flex-start;
@@ -63,7 +54,7 @@
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
-#back-button {
+.btn-back {
     position: relative;
     right: 14px;
     height: 15vh;

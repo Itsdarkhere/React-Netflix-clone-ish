@@ -35,7 +35,7 @@ export default class preview extends React.Component {
                         </a>
                     </div>
                 </div>
-                <Carousel gategory="Suosittuja netflixissä" movies={this.movies} clicked={false}/>
+                <Carousel gategory="Suosittuja netflixissä" movies={this.movies} index={0}/>
             </div>
         )
     }
