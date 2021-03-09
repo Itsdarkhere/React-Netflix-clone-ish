@@ -7,15 +7,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(faPlay)
 
 export default class preview extends React.Component {
-    constructor(props) {
-        super(props);
-
-    }
 
     
     //this needs to be passed to carousel so that it has movies to display
-    movies = ['oblivion.movies.jpg', 'maleficent-movie.jpg', 'need-movies.jpg',
-     'saw-movie.jpg', 'sherlock-movie.jpg', 'shining-movie.jpg', 'tron-movie.jpg', 'ss-movie.jpg'];
+    movies = [['need-movies.jpg', 'maleficent-movie.jpg', 'oblivion.movies.jpg',
+    'ironman-movie.jpg', 'sherlock-movie.jpg', 'shining-movie.jpg', 'tron-movie.jpg', 'ss-movie.jpg'], 
+    ['tron-movie.jpg', 'ss-movie.jpg', '300-movie.jpg','aquaman-movie.jpg', 'brave-movie.jpg',
+     'ca-movie.jpg', 'capmarvel-movie.jpg', 'dracula.movie.jpg'], 
+    ['capmarvel-movie.jpg', 'dracula.movie.jpg', 'inception-movie.jpg', 'wolwerine.movie.jpg', 'fury.movie.jpg', 'gg-movie.jpg',
+   'need-movies.jpg', 'maleficent-movie.jpg'], ['need-movies.jpg', 'maleficent-movie.jpg', 'oblivion.movies.jpg',
+   'ironman-movie.jpg', 'sherlock-movie.jpg', 'shining-movie.jpg', 'tron-movie.jpg', 'ss-movie.jpg']
+    ];
         
     render() {
         return (
