@@ -3,7 +3,7 @@ import './carousel.css'
 // since I dont wanna build a db right now for this project, movies.css acts like one.
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight, faLeaf } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faChevronRight);
 
@@ -58,6 +58,20 @@ export default class Carousel extends React.Component {
         return (
             <div id="list-container" onMouseLeave={() => this.setState({boxHover: false})} onMouseEnter={() => this.setState({boxHover: true})}>
                 <h2 id="gategory">{this.state.gategory}</h2>
+                <div id="video-popup-container">
+                    {this.state.movieRow.map((movie, index) => {
+                        if (!(index === 0 | index === 7)) {
+                            return (
+                                <div className="popup">
+                                    <video autoPlay="true" id="video-rick">
+                                        <source src="/pics/astley.mp4" type="video/mp4"/>
+                                    </video>
+                                    <div id="movie-info-div"></div>
+                                </div>
+                            )
+                        }
+                    })}
+                </div>
                 <div id="smaller-list-container">
                     <div id={'back-button' + this.props.index} className="btn-back" style={{opacity: 0}} onClick={() => this.newRow('back')}>
                         {this.state.boxHover &&(
@@ -70,34 +84,20 @@ export default class Carousel extends React.Component {
                                 //this one is just so i can track and make the first movie invisible
                                 return (
                                     <div id={"movie-div-"+ index + this.props.index} className="movie" 
-                                    style={{opacity: 0}} key={'movie-div'+ index} onMouseEnter={() => this.setState({movieHover: true})}>
+                                        style={{opacity: 0}} key={'movie-div'+ index} onMouseEnter={() => this.setState({movieHover: true})}>
                                         <img className="round" id={'img-'+index} alt="movie" src={process.env.PUBLIC_URL + "/pics/" + movie} 
                                         height="100%" width="100%"></img>
-                                        {this.state.movieHover && (
-                                            <div id="popup-box">
-                                                <span id="to-center"></span>
-                                                <div>
-                                                    <p>Dang man bro mandingo</p>
-                                                </div>
-                                            </div>
-                                        )}
                                     </div>
                                 )
                             } else {
-                                return (
+                                return (            
                                     <div id={"movie-div-"+ index} className="movie" key={'movie-div'+ index}
                                     onMouseEnter={() => this.setState({movieHover: true})}>
-                                        <img className="round" id={'img-'+index} alt="movie" src={process.env.PUBLIC_URL + "/pics/" + movie} 
+                                        <img className="round" id={'img-'+index} alt="movie" 
+                                        src={process.env.PUBLIC_URL + "/pics/" + movie} 
                                         height="100%" width="100%"></img>
-                                        {this.state.movieHover && (
-                                            <div id="popup-box">
-                                                <span id="to-center"></span>
-                                                <div>
-                                                    <p>Dang man bro mandingo</p>
-                                                </div>
-                                            </div>
-                                        )}
                                     </div>
+                                       
                                 )
                             }
                         })}

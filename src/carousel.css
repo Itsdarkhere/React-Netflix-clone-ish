@@ -15,6 +15,38 @@
     overflow: hidden;
 
 }
+#video-popup-container {
+    position: absolute;
+    z-index: 100000;
+    width: 91%;
+    height: 350px;     
+    border: 2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.popup {
+    height: 100%;
+    min-width: 13vw;
+    border: 1px solid orangered;
+}
+#video-rick {
+    width: 50%;
+    height: 50%;
+}
+#movie-pre-div {
+    z-index: 1000000;
+    height: 50%;
+}
+#movie-info-div {
+    width: 50%;
+    height: 50%;
+
+}
+.popup:hover {
+    width: 23vw;
+    border: 5px solid green;
+}
 #movie-list {
     height: 15vh;
     width: 90%;
@@ -71,9 +103,4 @@
 .round {
     border-radius: 5px;
 }
-#popup-box {
 
-    height: 200px;
-    width: 150px;
-    background-color: white;
-}
