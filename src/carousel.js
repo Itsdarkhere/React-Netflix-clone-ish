@@ -1,12 +1,10 @@
-import React from "react"
 import './carousel.css'
 // since I dont wanna build a db right now for this project, movies.css acts like one.
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight, faLeaf } from "@fortawesome/free-solid-svg-icons";
-
-library.add(faChevronRight);
-
+import { faChevronRight, faPlay, faPlus, faThumbsDown, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import React from 'react'
+library.add(faChevronRight, faPlay, faPlus);
 
 
 export default class Carousel extends React.Component {
@@ -17,7 +15,10 @@ export default class Carousel extends React.Component {
             movies: this.props.movies,
             movieRow: this.props.movies[0],
             boxHover: false,
-            movieHover: false
+            movieHover: false,
+            delayHandler: null,
+            delayHandler2: null,
+            popupOnline: false
         }
         this.newRow = this.newRow.bind(this);
     }
@@ -51,9 +52,48 @@ export default class Carousel extends React.Component {
             }
             this.setState({movieRow: this.state.movies[this.number]});
         }
+    }   
+
+    handleMouseEnter(index) {
+        let popup = document.getElementById('popup' + index + this.props.index);
+        let video = document.getElementById('video-rick' + index + this.props.index);
+        this.setState({delayHandler: setTimeout(() => {
+            popup.classList.add('movie-hover');
+            video.play();
+        }, 600)})
     }
 
+    handleMouseLeave(index) {
+        let popup = document.getElementById('popup' + index + this.props.index);
+        let video = document.getElementById('video-rick' + index + this.props.index);
 
+        //Once the popup opens it starts taking pointer events so naturally the movie no longer does, since that happens it
+        //wants to close the popup, or not open it. So were putting a small timer on the event close, and if the popup is hovered
+        // we kill that timer and it no longer closes the popup, took a while.
+        
+        if (popup.classList.contains('movie-hover')) {
+            this.setState({delayHandler2: setTimeout(() => {
+                popup.classList.remove('movie-hover')
+                video.pause();
+                video.currentTime = 0;
+                clearTimeout(this.state.delayHandler)
+            }, 100)})
+        } else {
+            clearTimeout(this.state.delayHandler)
+        }
+        
+    }
+    playMovie(index) {
+        let popup = document.getElementById('popup' + index + this.props.index);
+        popup.classList.remove('movie-hover');
+        var video = document.getElementById('video-rick' + index + this.props.index);
+        video.currentTime = 0;
+        video.play();
+        video.webkitRequestFullScreen();    
+    }
+
+    
+ 
     render() {
         return (
             <div id="list-container" onMouseLeave={() => this.setState({boxHover: false})} onMouseEnter={() => this.setState({boxHover: true})}>
@@ -62,13 +102,49 @@ export default class Carousel extends React.Component {
                     {this.state.movieRow.map((movie, index) => {
                         if (!(index === 0 | index === 7)) {
                             return (
-                                <div className="popup">
-                                    <video autoPlay="true" id="video-rick">
-                                        <source src="/pics/astley.mp4" type="video/mp4"/>
-                                    </video>
-                                    <div id="movie-info-div"></div>
+                                <div className="popup" id={'popup' + index + this.props.index} onMouseLeave={() => this.handleMouseLeave(index)} 
+                                onMouseOver={() => clearTimeout(this.state.delayHandler2)}>
+                                    <div id="movie-clip-container">
+                                        <video className="video-rick" muted id={'video-rick' + index + this.props.index}>
+                                            <source src="/pics/tron-clip.mp4" type="video/mp4"/>
+                                        </video>
+                                    </div>
+                                    <div id="movie-info-container">
+                                        <div id="actions">
+                                            <div id="button-subcontainer-one">
+                                                <div id="play-button-popup" className="round-button" style={{backgroundColor: 'white'}}
+                                                onClick={() => this.playMovie(index)}>
+                                                    <FontAwesomeIcon icon={faPlay} />
+                                                </div>
+                                                <div id="plus-button" className="round-button">
+                                                    <FontAwesomeIcon icon={faPlus} style={{color: 'white'}}/>
+                                                </div>
+                                                <div id="thumbs-up-button" className="round-button">
+                                                    <FontAwesomeIcon icon={faThumbsUp} style={{color: 'white'}}/>
+                                                </div>
+                                                <div id="thumbs-down-button" className="round-button">
+                                                    <FontAwesomeIcon icon={faThumbsDown} style={{color: 'white'}}/>
+                                                </div>
+                                            </div>  
+                                            <div id="button-subcontainer-two">
+                                                <div className="round-button">
+                                                    <FontAwesomeIcon icon={faChevronRight} style={{transform: 'rotate(90deg)', color: 'white'} }/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="info">
+                                            <h4 id="personalization">98% sopiva</h4>
+                                            <div id="pg">13+</div>
+                                            <h4 id="length">Kesto</h4>
+                                        </div>
+                                        <div id="tags">
+                                            <p className="white-p">Uskalias</p>
+                                            <p className="white-p">Vakuuttava</p>
+                                            <p className="white-p">Hauska</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            )
+                            )   
                         }
                     })}
                 </div>
@@ -84,20 +160,29 @@ export default class Carousel extends React.Component {
                                 //this one is just so i can track and make the first movie invisible
                                 return (
                                     <div id={"movie-div-"+ index + this.props.index} className="movie" 
-                                        style={{opacity: 0}} key={'movie-div'+ index} onMouseEnter={() => this.setState({movieHover: true})}>
+                                        style={{opacity: 0}} key={'movie-div'+ index}>
                                         <img className="round" id={'img-'+index} alt="movie" src={process.env.PUBLIC_URL + "/pics/" + movie} 
                                         height="100%" width="100%"></img>
                                     </div>
                                 )
-                            } else {
+                            } else if (index === 7) {
                                 return (            
-                                    <div id={"movie-div-"+ index} className="movie" key={'movie-div'+ index}
-                                    onMouseEnter={() => this.setState({movieHover: true})}>
-                                        <img className="round" id={'img-'+index} alt="movie" 
+                                    <div id={"movie-div-"+ index} className="movie" key={'movie-div'+ index}>
+                                        <img className="round" id={'img-'+index} alt="movie"
                                         src={process.env.PUBLIC_URL + "/pics/" + movie} 
                                         height="100%" width="100%"></img>
                                     </div>
                                        
+                                )
+                            } else {
+                                return (            
+                                    <div id={"movie-div-"+ index} className="movie" key={'movie-div'+ index}
+                                    onMouseEnter={() => this.handleMouseEnter(index)}
+                                    onMouseLeave={() => this.handleMouseLeave(index)}>
+                                        <img className="round" id={'img-'+index} alt="movie"
+                                        src={process.env.PUBLIC_URL + "/pics/" + movie} 
+                                        height="100%" width="100%"></img>
+                                    </div>
                                 )
                             }
                         })}
