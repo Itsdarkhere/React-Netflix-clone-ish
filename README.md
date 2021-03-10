@@ -5,6 +5,7 @@
  
  ## The problem still not fixed: 
  - on preview exit to sides, sometimes does not recognize next movie hover.
+ - Also should deff deconstruct the code a fair amount, bit bulky now since I got carried away in the frenzy of building.
 
  
 
